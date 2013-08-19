@@ -17,13 +17,6 @@
 
 - (void)viewDidLoad
 {
-    /*
-    NSString * website = @"http://ec2-54-213-75-45.us-west-2.compute.amazonaws.com/whiffenspoof/redshift.html";
-    NSURL  *url = [NSURL URLWithString:website];
-    NSURLRequest *requestUrl = [NSURLRequest requestWithURL:url];
-    [webview loadRequest:requestUrl];
-    */
-    
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"whiffenspoof/redshift" withExtension:@"html"];
     NSString *urlString = [url absoluteString];
     NSLog(@"url string %@", urlString);
@@ -34,10 +27,18 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidUnload {
+    [self setWebview:nil];
+    [super viewDidUnload];
+}
 @end
